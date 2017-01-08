@@ -13,4 +13,5 @@ Python module for Microsoft Cognitive Services
 
 ## TODO
 * Support more visualFeatures for Computer Vision
+* Support image url for Computer Vision
 
