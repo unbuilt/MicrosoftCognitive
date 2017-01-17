@@ -10,15 +10,27 @@ class ComputerVision():
     """Computer Vision API"""
 
     def __init__(self, key):
-        # Variables
+        """Initialize the ComputerVision
+
+        Keyword arguments:
+        key -- the API key for Computer Vision API
+        """
+
         self._url = 'https://api.projectoxford.ai/vision/v1.0/analyze'
         self._key = key
 
-    def analyze_image(self, image_data, language='en', max_retries=3):
-        """Analyze the impage"""
+    def analyze_image(self, image_data, features, language='en', max_retries=3):
+        """Analyze the impage
 
-        # Computer Vision parameters
-        params = {'visualFeatures' : 'Tags,Description', 'language': language}
+        Keyword arguments:
+        image_data -- the binary data of the image
+        features -- the features what to analyze, sepatated by ',',
+                    e.g. 'Categories,Tags,Description,Faces,ImageType,Color,Adult'
+        language -- the language for response, only support 'en' and 'zh' (default 'en')
+        max_tetries -- the number of retries when the request failed (default 3)
+        """
+
+        params = {'visualFeatures' : features, 'language': language}
 
         headers = dict()
         headers['Ocp-Apim-Subscription-Key'] = self._key
@@ -64,6 +76,12 @@ class Translator():
     """Microsoft Translator Text API"""
 
     def __init__(self, key):
+        """Initialize Translator
+
+        Keyword arguments:
+        key -- the API key for Microsoft Translator Text API
+        """
+
         self._key = key
 
     def _get_translator_token(self):
@@ -74,7 +92,13 @@ class Translator():
         return response.text
 
     def translate(self, text, from_language='en', to_language='zh-CHS'):
-        """Translate the text into another language"""
+        """Translate the text into another language
+
+        Keyword arguments:
+        text -- the text to translate
+        from_language -- the language of the text to translate (default 'en'')
+        to_language -- the language want to translate to (default 'zh-CHS')
+        """
 
         url = 'http://api.microsofttranslator.com/v2/Http.svc/Translate'
         params = {'text': text, 'from': from_language, 'to': to_language}
@@ -88,7 +112,3 @@ class Translator():
             text = text[start+1:end]
         text = text[:]
         return text
-
-
-if __name__ == "__main__":
-    pass

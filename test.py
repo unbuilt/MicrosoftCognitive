@@ -14,7 +14,7 @@ def test_computer_vision():
     with open(filename, 'rb') as image_file:
         data = image_file.read()
     computer_vision = ComputerVision(computer_vision_key)
-    result = computer_vision.analyze_image(data)
+    result = computer_vision.analyze_image(data, 'Tags,Description')
     print(result)
     print(result['description']['captions'])
 
