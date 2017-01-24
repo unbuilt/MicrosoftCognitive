@@ -72,6 +72,40 @@ class ComputerVision():
         return result
 
 
+class Face():
+    """Face API"""
+
+    def __init__(self, key):
+        """Initialize Face
+
+        Keyword arguments:
+        key -- the API key for Face API
+        """
+
+        self._url = 'https://westus.api.cognitive.microsoft.com/face/v1.0/detect'
+        self._key = key
+
+    def detect_image(self, image_data, face_attributes):
+        """Analyze the impage
+
+        Keyword arguments:
+        image_data -- the binary data of the image
+        face_attributes -- the face attributes what to be returned, sepatated by ',',
+                    e.g. 'age,gender,headPose,smile,facialHair,glasses'
+        returnFaceAttributes
+        """
+
+        params = {'returnFaceAttributes' : face_attributes}
+
+        headers = dict()
+        headers['Ocp-Apim-Subscription-Key'] = self._key
+        headers['Content-Type'] = 'application/octet-stream'
+        response = requests.request('post', self._url, \
+            data=image_data, headers=headers, params=params)
+
+        return response.json()
+
+
 class Translator():
     """Microsoft Translator Text API"""
 

@@ -3,7 +3,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from cognitive import ComputerVision, Translator
+from cognitive import ComputerVision, Translator, Face
 
 def test_computer_vision():
     """Test Computer Vision API"""
@@ -29,7 +29,21 @@ def test_translator():
     print(translated_text)
 
 
+def test_face():
+    """Test Face API"""
+
+    # Load raw image file into memory
+    face_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+    filename = r'YOUR_IMAGE_FILENAME' # Please set a valid filename here before running the test
+    with open(filename, 'rb') as image_file:
+        data = image_file.read()
+    face = Face(face_key)
+    result = face.detect_image(data, 'age,gender,headPose,smile,facialHair,glasses')
+    print(result)
+
+
 if __name__ == "__main__":
     test_computer_vision()
     test_translator()
+    test_face()
 
