@@ -1,11 +1,17 @@
 # MicrosoftCognitive
+
 Python module for Microsoft Cognitive Services
+
+https://www.microsoft.com/cognitive-services
 
 * Only for Python 3
 
 ## Supported API
 
 ### Computer Vision API
+
+https://www.microsoft.com/cognitive-services/en-us/computer-vision-api
+
 * Only support analyze image data
 
 ```python
@@ -18,6 +24,9 @@ result = computer_vision.analyze_image(data, 'Tags,Description')
 ```
 
 ### Face API
+
+https://www.microsoft.com/cognitive-services/en-us/face-api
+
 * Only support detect faces from image data
 
 ```python
@@ -29,7 +38,25 @@ face = Face(face_key)
 result = face.detect_image(data, 'age,gender,headPose,smile,facialHair,glasses')
 ```
 
+### Emotion API
+
+https://www.microsoft.com/cognitive-services/en-us/emotion-api
+
+* Only support recognize emotions from image data
+
+```python
+emotion_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+filename = r'YOUR_IMAGE_FILENAME' # Please set a valid filename here before running the test
+with open(filename, 'rb') as image_file:
+    data = image_file.read()
+emotion = Emotion(emotion_key)
+result = emotion.recognize_image(data)
+```
+
 ### Translator Text API
+
+https://www.microsoft.com/cognitive-services/en-us/translator-api
+
 * Only support translate method
 
 ```python

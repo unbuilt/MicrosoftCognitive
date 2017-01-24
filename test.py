@@ -3,7 +3,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from cognitive import ComputerVision, Translator, Face
+from cognitive import ComputerVision, Translator, Face, Emotion
 
 def test_computer_vision():
     """Test Computer Vision API"""
@@ -41,9 +41,22 @@ def test_face():
     result = face.detect_image(data, 'age,gender,headPose,smile,facialHair,glasses')
     print(result)
 
+def test_emotion():
+    """Test Emotion API"""
+
+    # Load raw image file into memory
+    emotion_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+    filename = r'YOUR_IMAGE_FILENAME' # Please set a valid filename here before running the test
+    with open(filename, 'rb') as image_file:
+        data = image_file.read()
+    emotion = Emotion(emotion_key)
+    result = emotion.recognize_image(data)
+    print(result)
+
 
 if __name__ == "__main__":
-    test_computer_vision()
-    test_translator()
-    test_face()
+    #test_computer_vision()
+    #test_translator()
+    #test_face()
+    test_emotion()
 

@@ -106,6 +106,34 @@ class Face():
         return response.json()
 
 
+class Emotion():
+    """Emotion API"""
+
+    def __init__(self, key):
+        """Initialize Emotion
+
+        Keyword arguments:
+        key -- the API key for Emotion API
+        """
+
+        self._url = 'https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize'
+        self._key = key
+
+    def recognize_image(self, image_data):
+        """Analyze the impage
+
+        Keyword arguments:
+        image_data -- the binary data of the image
+        """
+
+        headers = dict()
+        headers['Ocp-Apim-Subscription-Key'] = self._key
+        headers['Content-Type'] = 'application/octet-stream'
+        response = requests.request('post', self._url, data=image_data, headers=headers)
+
+        return response.json()
+
+
 class Translator():
     """Microsoft Translator Text API"""
 
