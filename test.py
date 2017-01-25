@@ -3,7 +3,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from cognitive import ComputerVision, Translator, Face, Emotion
+from cognitive import ComputerVision, Translator, Face, Emotion, LUIS
 
 def test_computer_vision():
     """Test Computer Vision API"""
@@ -53,10 +53,19 @@ def test_emotion():
     result = emotion.recognize_image(data)
     print(result)
 
+def test_luis():
+    """Test LUIS"""
+
+    luis_key = '95b0247e95934797a3e5b35bcecebc9c' # Please set the correct key here before running the test
+    luis = LUIS(luis_key)
+    result = luis.predict('北京天气')
+    print(result)
+
 
 if __name__ == "__main__":
     #test_computer_vision()
     #test_translator()
     #test_face()
-    test_emotion()
+    #test_emotion()
+    test_luis()
 

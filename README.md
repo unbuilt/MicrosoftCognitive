@@ -53,6 +53,24 @@ emotion = Emotion(emotion_key)
 result = emotion.recognize_image(data)
 ```
 
+### LUIS - Language Understanding Intelligent Service
+
+https://www.microsoft.com/cognitive-services/en-us/language-understanding-intelligent-service-luis
+
+There is a Python SDK for LUIS: https://github.com/Microsoft/Cognitive-LUIS-Python/
+
+* Only support predict
+
+```python
+luis_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+luis = LUIS(luis_key)
+result = luis.predict('北京天气')
+```
+
+```josn
+{'entities': [{'type': 'builtin.weather.absolute_location', 'entity': '北京'}], 'intents': [{'intent': 'builtin.intent.weather.check_weather'}], 'query': '北京天气'}
+```
+
 ### Translator Text API
 
 https://www.microsoft.com/cognitive-services/en-us/translator-api

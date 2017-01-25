@@ -134,6 +134,41 @@ class Emotion():
         return response.json()
 
 
+class LUIS():
+    """Language Understanding Intelligent Service"""
+
+    def __init__(self, key):
+        """Initialize LUIS
+
+        Keyword arguments:
+        key -- the API key for Language Understanding Intelligent Service
+        """
+
+        self._url = 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/'
+        self._prebuilt_cortana_chinese = 'c27c4af7-d44a-436f-a081-841bb834fa29'
+        self._key = key
+
+    def predict(self, query, appid=None):
+        """Analyze the impage
+
+        Keyword arguments:
+        image_data -- the binary data of the image
+        """
+
+        params = {'subscription-key' : self._key, 'q': query}
+
+        headers = dict()
+        headers['Ocp-Apim-Subscription-Key'] = self._key
+        headers['Content-Type'] = 'application/octet-stream'
+
+        if not appid:
+            appid = self._prebuilt_cortana_chinese
+        url = self._url + appid
+
+        response = requests.request('get', url, params=params, headers=headers)
+
+        return response.json()
+
 class Translator():
     """Microsoft Translator Text API"""
 
