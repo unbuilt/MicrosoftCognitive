@@ -67,8 +67,21 @@ luis = LUIS(luis_key)
 result = luis.predict('北京天气')
 ```
 
-```josn
-{'entities': [{'type': 'builtin.weather.absolute_location', 'entity': '北京'}], 'intents': [{'intent': 'builtin.intent.weather.check_weather'}], 'query': '北京天气'}
+```json
+{
+  "query": "北京天气",
+  "intents": [
+    {
+      "intent": "builtin.intent.weather.check_weather"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "北京",
+      "type": "builtin.weather.absolute_location"
+    }
+  ]
+}
 ```
 
 ### Translator Text API
