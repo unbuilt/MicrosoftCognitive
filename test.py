@@ -56,7 +56,7 @@ def test_emotion():
 def test_luis():
     """Test LUIS"""
 
-    luis_key = '95b0247e95934797a3e5b35bcecebc9c' # Please set the correct key here before running the test
+    luis_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
     luis = LUIS(luis_key)
     result = luis.predict('北京天气')
     print(result)
