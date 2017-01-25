@@ -84,6 +84,26 @@ result = luis.predict('北京天气')
 }
 ```
 
+### AutoSuggest API
+
+https://www.microsoft.com/cognitive-services/en-us/bing-autosuggest-api
+
+```python
+autosuggest_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+autosuggest = Autosuggest(autosuggest_key)
+result = autosuggest.suggestions('美国总统')
+```
+
+### Web Search API
+
+https://www.microsoft.com/cognitive-services/en-us/bing-web-search-api
+
+```python
+websearch_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+websearch = WebSearch(websearch_key)
+result = websearch.search('美国总统')
+```
+
 ### Translator Text API
 
 https://www.microsoft.com/cognitive-services/en-us/translator-api

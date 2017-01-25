@@ -149,10 +149,11 @@ class LUIS():
         self._key = key
 
     def predict(self, query, appid=None):
-        """Analyze the impage
+        """Predict the intent and entities
 
         Keyword arguments:
-        image_data -- the binary data of the image
+        query -- the query
+        appid -- the app id, when it's None, will use the prebuilt Cortana application for Chinese
         """
 
         params = {'subscription-key' : self._key, 'q': query}
@@ -166,6 +167,66 @@ class LUIS():
         url = self._url + appid
 
         response = requests.request('get', url, params=params, headers=headers)
+
+        return response.json()
+
+class Autosuggest():
+    """Autosuggest API"""
+
+    def __init__(self, key):
+        """Initialize Autosuggest
+
+        Keyword arguments:
+        key -- the API key for Autosuggest API
+        """
+
+        self._url = 'https://api.cognitive.microsoft.com/bing/v5.0/suggestions/'
+        self._key = key
+
+    def suggestions(self, query):
+        """Get suggestions for query
+
+        Keyword arguments:
+        query -- the query
+        """
+
+        params = {'subscription-key' : self._key, 'q': query}
+
+        headers = dict()
+        headers['Ocp-Apim-Subscription-Key'] = self._key
+        headers['Content-Type'] = 'application/octet-stream'
+
+        response = requests.request('get', self._url, params=params, headers=headers)
+
+        return response.json()
+
+class WebSearch():
+    """Web Search API"""
+
+    def __init__(self, key):
+        """Initialize WebSearch
+
+        Keyword arguments:
+        key -- the API key for Web Search API
+        """
+
+        self._url = 'https://api.cognitive.microsoft.com/bing/v5.0/search'
+        self._key = key
+
+    def search(self, query, count=10, offset=0, safesearch='moderate', mkt='zh-cn'):
+        """Get web search result for query
+
+        Keyword arguments:
+        query -- the query
+        """
+
+        params = {'q': query, 'count': count, 'offset': offset, 'mkt': mkt, 'sefesearch': safesearch}
+
+        headers = dict()
+        headers['Ocp-Apim-Subscription-Key'] = self._key
+        headers['Content-Type'] = 'application/octet-stream'
+
+        response = requests.request('get', self._url, params=params, headers=headers)
 
         return response.json()
 

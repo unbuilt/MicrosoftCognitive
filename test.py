@@ -3,7 +3,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from cognitive import ComputerVision, Translator, Face, Emotion, LUIS
+from cognitive import ComputerVision, Translator, Face, Emotion, LUIS, Autosuggest, WebSearch
 
 def test_computer_vision():
     """Test Computer Vision API"""
@@ -61,11 +61,28 @@ def test_luis():
     result = luis.predict('北京天气')
     print(result)
 
+def test_autosuggest():
+    """Test Autosuggest API"""
+
+    autosuggest_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+    autosuggest = Autosuggest(autosuggest_key)
+    result = autosuggest.suggestions('美国总统')
+    print(result)
+
+def test_webserach():
+    """Test Web Search API"""
+
+    websearch_key = 'YOUR_API_KEY' # Please set the correct key here before running the test
+    websearch = WebSearch(websearch_key)
+    result = websearch.search('美国总统')
+    print(result)
+
 
 if __name__ == "__main__":
     #test_computer_vision()
     #test_translator()
     #test_face()
     #test_emotion()
-    test_luis()
-
+    #test_luis()
+    #test_autosuggest()
+    test_webserach()
